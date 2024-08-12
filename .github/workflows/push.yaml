@@ -17,7 +17,7 @@ jobs:
 
       - name: Push changes
         run:
-          monitors.py --monitors-file monitors.yaml
+          ./monitors.py --monitors-file monitors.yaml
         env:
           CLOUDNS_AUTH_ID: ${{ secrets.CLOUDNS_AUTH_ID }}
           CLOUDNS_AUTH_PASSWORD: ${{ secrets.CLOUDNS_AUTH_PASSWORD }}
