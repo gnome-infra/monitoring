@@ -1,0 +1,264 @@
+---
+- name: idm01.gnome.org
+  check_type: 5
+  host: idm01.gnome.org
+  ip: idm01.gnome.org
+  port: 443
+  path: /ipa/ui/
+  http_status_code: 200
+  check_period: 60
+
+- name: idm02.gnome.org
+  check_type: 5
+  host: idm02.gnome.org
+  ip: idm02.gnome.org
+  port: 443
+  path: /ipa/ui/
+  http_status_code: 200
+  check_period: 60
+
+- name: webmail.gnome.org
+  check_type: 5
+  host: webmail.gnome.org
+  ip: webmail.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: pad.gnome.org
+  check_type: 5
+  host: pad.gnome.org
+  ip: pad.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: bugzilla.gnome.org
+  check_type: 5
+  host: bugzilla.gnome.org
+  ip: bugzilla.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: blogs.gnome.org
+  check_type: 5
+  host: blogs.gnome.org
+  ip: blogs.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: blog.gtk.org
+  check_type: 5
+  host: blog.gtk.org
+  ip: blog.gtk.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: cloud.gnome.org
+  check_type: 5
+  host: cloud.gnome.org
+  ip: cloud.gnome.org
+  port: 443
+  path: /login
+  http_status_code: 200
+  check_period: 60
+
+- name: odrs.gnome.org
+  check_type: 5
+  host: odrs.gnome.org
+  ip: odrs.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: gitlab.gnome.org
+  check_type: 5
+  host: gitlab.gnome.org
+  ip: gitlab.gnome.org
+  port: 443
+  path: /explore/groups
+  http_status_code: 200
+  check_period: 60
+
+- name: developer.gnome.org
+  check_type: 5
+  host: developer.gnome.org
+  ip: developer.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: glade.gnome.org
+  check_type: 5
+  host: glade.gnome.org
+  ip: glade.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: help.gnome.org
+  check_type: 5
+  host: help.gnome.org
+  ip: help.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: planet.gnome.org
+  check_type: 5
+  host: planet.gnome.org
+  ip: planet.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: download.gnome.org
+  check_type: 5
+  host: download.gnome.org
+  ip: download.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: paste.gnome.org
+  check_type: 5
+  host: paste.gnome.org
+  ip: paste.gnome.org
+  port: 443
+  path: /status
+  http_status_code: 200
+  check_period: 60
+
+- name: mail.gnome.org
+  check_type: 5
+  host: mail.gnome.org
+  ip: mail.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: l10n.gnome.org
+  check_type: 5
+  host: l10n.gnome.org
+  ip: l10n.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: extensions.gnome.org
+  check_type: 5
+  host: extensions.gnome.org
+  ip: extensions.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: wiki.gnome.org
+  check_type: 5
+  host: wiki.gnome.org
+  ip: wiki.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: nmcheck.gnome.org
+  check_type: 5
+  host: nmcheck.gnome.org
+  ip: nmcheck.gnome.org
+  port: 443
+  path: /check_network_status.txt
+  http_status_code: 200
+  check_period: 60
+
+- name: www.gnome.org
+  check_type: 5
+  host: www.gnome.org
+  ip: www.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: discourse.gnome.org
+  check_type: 5
+  host: discourse.gnome.org
+  ip: discourse.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: events.gnome.org
+  check_type: 5
+  host: events.gnome.org
+  ip: events.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: gtk.org
+  check_type: 5
+  host: gtk.org
+  ip: gtk.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: www.gimp.org
+  check_type: 5
+  host: www.gimp.org
+  ip: www.gimp.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: docs.gimp.org
+  check_type: 5
+  host: docs.gimp.org
+  ip: docs.gimp.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: surveys.gnome.org
+  check_type: 5
+  host: surveys.gnome.org
+  ip: surveys.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: meet.gnome.org
+  check_type: 5
+  host: meet.gnome.org
+  ip: meet.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: nightly.gnome.org
+  check_type: 5
+  host: nightly.gnome.org
+  ip: nightly.gnome.org
+  port: 443
+  path: /status
+  http_status_code: 200
+  check_period: 60
+
+- name: shop.gnome.org
+  check_type: 5
+  host: shop.gnome.org
+  ip: shop.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: openqa.gnome.org
+  check_type: 5
+  host: openqa.gnome.org
+  ip: openqa.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+

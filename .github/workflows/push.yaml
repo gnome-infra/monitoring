@@ -1,0 +1,24 @@
+name: Push changes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Push changes
+        run:
+          monitors.py --monitors-file monitors.yaml
+        env:
+          CLOUDNS_AUTH_ID: ${{ secrets.CLOUDNS_AUTH_ID }}
+          CLOUDNS_AUTH_PASSWORD: ${{ secrets.CLOUDNS_AUTH_PASSWORD }}
+          PAGERDUTY_EMAIL: ${{ secrets.PAGERDUTY_EMAIL }}
