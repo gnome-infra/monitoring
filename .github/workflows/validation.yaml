@@ -1,0 +1,92 @@
+name: Code and YAML Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        pip install black isort ruff yamllint
+
+    - name: Validate YAML Files
+      run: |
+        yamllint . | tee yamllint_output.txt
+      continue-on-error: true
+
+    - name: Run Black
+      run: |
+        black --check . | tee black_output.txt
+      continue-on-error: true
+
+    - name: Run Isort
+      run: |
+        isort --check-only . | tee isort_output.txt
+      continue-on-error: true
+
+    - name: Run Ruff
+      run: |
+        ruff . | tee ruff_output.txt
+      continue-on-error: true
+
+    - name: Post Code Quality Results to PR
+      if: always()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          
+          const yamllintOutput = fs.readFileSync('yamllint_output.txt', 'utf8');
+          const blackOutput = fs.readFileSync('black_output.txt', 'utf8');
+          const isortOutput = fs.readFileSync('isort_output.txt', 'utf8');
+          const ruffOutput = fs.readFileSync('ruff_output.txt', 'utf8');
+
+          let body = '**Code Quality Check Results:**\n';
+
+          if (yamllintOutput) {
+            body += '### YAML Lint Output:\n```\n' + yamllintOutput + '\n```\n';
+          } else {
+            body += '### YAML Lint Output:\nNo issues found.\n';
+          }
+
+          if (blackOutput) {
+            body += '### Black Output:\n```\n' + blackOutput + '\n```\n';
+          } else {
+            body += '### Black Output:\nNo issues found.\n';
+          }
+
+          if (isortOutput) {
+            body += '### Isort Output:\n```\n' + isortOutput + '\n```\n';
+          } else {
+            body += '### Isort Output:\nNo issues found.\n';
+          }
+
+          if (ruffOutput) {
+            body += '### Ruff Output:\n```\n' + ruffOutput + '\n```\n';
+          } else {
+            body += '### Ruff Output:\nNo issues found.\n';
+          }
+
+          body += `\nFull run: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body,
+          });
