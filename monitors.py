@@ -154,7 +154,7 @@ def delete_monitor(monitor_id):
 
 def mon_requires_update(fetched_monitor, local_monitor):
     for key, value in local_monitor.items():
-        if type(value) == int:
+        if isinstance(key, int):
             value = str(value)
         if key == 'path':
             value = value.replace('/', '', 1)
