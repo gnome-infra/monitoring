@@ -112,7 +112,7 @@ def fetch_existing_notifications(monitor_id):
 def create_monitor(monitor):
     payload = build_payload(monitor)
     response = requests.post(API_CREATE_URL, data=payload)
-    if json.loads(response._content.decode())['status'] == "Success":
+    if response.json()['status'] == "Success":
         print(f"Monitor '{monitor['name']}' created successfully.")
 
         return response.json()['id']
@@ -129,7 +129,7 @@ def create_notification(monitor_id, monitor_name, notification_type, notificatio
     }
 
     response = requests.post(API_CREATE_NOTIFICATION_URL, data=notification_payload)
-    if json.loads(response._content.decode())['status'] == "Success":
+    if response.json()['status'] == "Success":
         print(f"Notification for monitor '{monitor_name}' created successfully.")
     else:
         print(f"Failed to create notification for monitor '{monitor_name}': {response.text}")
@@ -137,7 +137,7 @@ def create_notification(monitor_id, monitor_name, notification_type, notificatio
 def update_monitor(monitor_id, monitor):
     payload = build_payload(monitor, monitor_id)
     response = requests.post(API_UPDATE_URL, data=payload)
-    if json.loads(response._content.decode())['status'] == "Success":
+    if response.json()['status'] == "Success":
         print(f"Monitor '{monitor['name']}' updated successfully.")
     else:
         print(f"Failed to update monitor '{monitor['name']}': {response.text}")
@@ -148,7 +148,7 @@ def delete_monitor(monitor_id):
         'auth-password': AUTH_PASSWORD,
         'id': monitor_id
     })
-    if json.loads(response._content.decode())['status'] == "Success":
+    if response.json()['status'] == "Success":
         print(f"Monitor ID {monitor_id} deleted successfully.")
     else:
         print(f"Failed to delete monitor ID {monitor_id}: {response.text}")
@@ -187,7 +187,7 @@ def delete_notification(monitor_id, notification_id):
         'id': monitor_id,
         'notification-id': notification_id
     })
-    if json.loads(response._content.decode())['status'] == "Success":
+    if response.json()['status'] == "Success":
         print(f"Notification ID {notification_id} deleted successfully.")
     else:
         print(f"Failed to delete notification ID {notification_id}: {response.text}")
