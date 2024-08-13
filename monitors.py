@@ -2,7 +2,6 @@
 
 import os
 import yaml
-import json
 import requests
 import argparse
 
