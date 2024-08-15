@@ -32,7 +32,7 @@ def build_payload(monitor, monitor_id=None):
         "check_type": monitor["check_type"],
         "ip": monitor.get("ip", ""),
         "status_change_checks": monitor.get("status_change_checks", 1),
-        "monitoring_region": monitor.get("monitoring_region", "global"),
+        "monitoring_region": monitor.get("monitoring_region", "nam"),
         "host": monitor.get("host", ""),
         "port": monitor.get("port", ""),
         "path": monitor.get("path", ""),
