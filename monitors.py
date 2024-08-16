@@ -50,7 +50,7 @@ def build_payload(monitor, monitor_id=None):
         "latency_limit": monitor.get("latency_limit", ""),
         "cacert": monitor.get("cacert", ""),
         "http_request_type": monitor.get("http_request_type", "GET"),
-        "ip_type": monitor.get("ip_type", 1),
+        "ip_type": monitor.get("ip_type", 2),
     }
     if monitor_id:
         payload["id"] = monitor_id
