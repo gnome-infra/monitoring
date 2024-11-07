@@ -262,14 +262,14 @@
   http_status_code: 200
   check_period: 60
 
-- name: smtp.gnome.org
+- name: smtp.gnome.org-relay
   check_type: 15
   host: smtp.gnome.org
   ip: smtp.gnome.org
   port: 25
   check_period: 60
 
-- name: smtp.gnome.org
+- name: smtp.gnome.org-submission
   check_type: 15
   host: smtp.gnome.org
   ip: smtp.gnome.org
