@@ -51,6 +51,7 @@ def build_payload(monitor, monitor_id=None):
         "cacert": monitor.get("cacert", ""),
         "http_request_type": monitor.get("http_request_type", "GET"),
         "ip_type": monitor.get("ip_type", 2),
+        "connection_security": monitor.get("connection_security", 2),
     }
     if monitor_id:
         payload["id"] = monitor_id

@@ -262,3 +262,16 @@
   http_status_code: 200
   check_period: 60
 
+- name: smtp.gnome.org
+  check_type: 5
+  host: smtp.gnome.org
+  ip: smtp.gnome.org
+  port: 25
+  check_period: 60
+
+- name: smtp.gnome.org
+  check_type: 5
+  host: smtp.gnome.org
+  ip: smtp.gnome.org
+  port: 587
+  check_period: 60
