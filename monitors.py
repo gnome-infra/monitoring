@@ -24,7 +24,7 @@ AUTH_PASSWORD = os.environ.get("CLOUDNS_AUTH_PASSWORD")
 PAGERDUTY_EMAIL = os.environ.get("PAGERDUTY_EMAIL")
 
 
-def build_payload(monitor, monitor_id=None):
+def build_payload(monitor, monitor_type, monitor_id=None):
     payload = {
         "auth-id": AUTH_ID,
         "auth-password": AUTH_PASSWORD,
@@ -35,24 +35,29 @@ def build_payload(monitor, monitor_id=None):
         "monitoring_region": monitor.get("monitoring_region", "nam"),
         "host": monitor.get("host", ""),
         "port": monitor.get("port", ""),
-        "path": monitor.get("path", ""),
-        "content": monitor.get("content", ""),
-        "open_port": monitor.get("open_port", ""),
-        "query_type": monitor.get("query_type", ""),
-        "query_response": monitor.get("query_response", ""),
         "check_period": monitor.get("check_period", 300),
         "state": monitor.get("state", 1),
-        "http_status_code": monitor.get("http_status_code", ""),
-        "timeout": monitor.get("timeout", 5),
-        "content_match": monitor.get("content_match", "exact"),
-        "custom_header": monitor.get("custom_header", ""),
-        "custom_header_value": monitor.get("custom_header_value", ""),
-        "latency_limit": monitor.get("latency_limit", ""),
-        "cacert": monitor.get("cacert", ""),
-        "http_request_type": monitor.get("http_request_type", "GET"),
         "ip_type": monitor.get("ip_type", 2),
-        "connection_security": monitor.get("connection_security", 2),
     }
+
+    if monitor_type == 'http':
+        additional_payload = {
+            "http_request_type": monitor.get("http_request_type", "GET"),
+            "content_match": monitor.get("content_match", "exact"),
+            "custom_header": monitor.get("custom_header", ""),
+            "custom_header_value": monitor.get("custom_header_value", ""),
+            "http_status_code": monitor.get("http_status_code", ""),
+            "content": monitor.get("content", ""),
+            "path": monitor.get("path", ""),
+            "timeout": monitor.get("timeout", 5),
+        }
+
+    if monitor_type == 'smtp':
+        additional_payload = {
+            "connection_security": monitor.get("connection_security", 2),
+        }
+        payload.update(additional_payload)
+
     if monitor_id:
         payload["id"] = monitor_id
 
@@ -124,8 +129,8 @@ def fetch_existing_notifications(monitor_id):
     return notifications
 
 
-def create_monitor(monitor):
-    payload = build_payload(monitor)
+def create_monitor(monitor, monitor_type):
+    payload = build_payload(monitor, monitor_type)
     response = requests.post(API_CREATE_URL, data=payload)
     if response.json()["status"] == "Success":
         print(f"Monitor '{monitor['name']}' created successfully.")
@@ -155,8 +160,8 @@ def create_notification(
         )
 
 
-def update_monitor(monitor_id, monitor):
-    payload = build_payload(monitor, monitor_id)
+def update_monitor(monitor_id, monitor_type, monitor):
+    payload = build_payload(monitor, monitor_type, monitor_id)
     response = requests.post(API_UPDATE_URL, data=payload)
     if response.json()["status"] == "Success":
         print(f"Monitor '{monitor['name']}' updated successfully.")
@@ -240,8 +245,13 @@ def parse_yaml_and_manage_monitors(yaml_file):
 
     for mon in monitors:
         if mon["name"] in existing_monitors.keys():
+            if mon["check_type"] == 5:
+                mon_type = 'http'
+            elif mon["check_type"] == 15:
+                mon_type = 'smtp'
+
             if mon_requires_update(existing_monitors[mon["name"]], mon):
-                update_monitor(existing_monitors[mon["name"]]["id"], mon)
+                update_monitor(existing_monitors[mon["name"]]["id"], mon_type, mon)
 
             existing_notification = fetch_existing_notifications(
                 existing_monitors[mon["name"]]["id"]
@@ -278,7 +288,7 @@ def parse_yaml_and_manage_monitors(yaml_file):
                             notification["value"],
                         )
         else:
-            id = create_monitor(mon)
+            id = create_monitor(mon, mon_type)
             for notification in mon.get(
                 "notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}]
             ):

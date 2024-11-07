@@ -263,14 +263,14 @@
   check_period: 60
 
 - name: smtp.gnome.org
-  check_type: 5
+  check_type: 15
   host: smtp.gnome.org
   ip: smtp.gnome.org
   port: 25
   check_period: 60
 
 - name: smtp.gnome.org
-  check_type: 5
+  check_type: 15
   host: smtp.gnome.org
   ip: smtp.gnome.org
   port: 587
