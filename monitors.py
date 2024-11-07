@@ -52,6 +52,11 @@ def build_payload(monitor, monitor_type, monitor_id=None):
             "timeout": monitor.get("timeout", 5),
         }
 
+        payload.update(additional_payload)
+
+        if payload["path"]:
+            payload["path"] = payload["path"].replace("/", "", 1)
+
     if monitor_type == 'smtp':
         additional_payload = {
             "connection_security": monitor.get("connection_security", 2),
@@ -60,9 +65,6 @@ def build_payload(monitor, monitor_type, monitor_id=None):
 
     if monitor_id:
         payload["id"] = monitor_id
-
-    if payload["path"]:
-        payload["path"] = payload["path"].replace("/", "", 1)
 
     return payload
 
