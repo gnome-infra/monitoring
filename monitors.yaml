@@ -283,11 +283,3 @@
   port: 443
   http_status_code: 200
   check_period: 60
-
-- name: www.gimp.org
-  check_type: 5
-  host: www.gimp.org
-  ip: www.gimp.org
-  port: 443
-  http_status_code: 200
-  check_period: 60
