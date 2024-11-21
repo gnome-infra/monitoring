@@ -275,3 +275,19 @@
   ip: smtp.gnome.org
   port: 587
   check_period: 60
+
+- name: download.gimp.org
+  check_type: 5
+  host: download.gimp.org
+  ip: download.gimp.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: www.gimp.org
+  check_type: 5
+  host: www.gimp.org
+  ip: www.gimp.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
