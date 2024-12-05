@@ -17,14 +17,6 @@
   http_status_code: 200
   check_period: 60
 
-- name: webmail.gnome.org
-  check_type: 5
-  host: webmail.gnome.org
-  ip: webmail.gnome.org
-  port: 443
-  http_status_code: 200
-  check_period: 60
-
 - name: pad.gnome.org
   check_type: 5
   host: pad.gnome.org
@@ -243,14 +235,6 @@
   ip: nightly.gnome.org
   port: 443
   path: /status
-  http_status_code: 200
-  check_period: 60
-
-- name: shop.gnome.org
-  check_type: 5
-  host: shop.gnome.org
-  ip: shop.gnome.org
-  port: 443
   http_status_code: 200
   check_period: 60
 
