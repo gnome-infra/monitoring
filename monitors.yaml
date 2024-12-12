@@ -1,17 +1,8 @@
 ---
-- name: idm01.gnome.org
+- name: idm.gnome.org
   check_type: 5
-  host: idm01.gnome.org
-  ip: idm01.gnome.org
-  port: 443
-  path: /ipa/ui/
-  http_status_code: 200
-  check_period: 60
-
-- name: idm02.gnome.org
-  check_type: 5
-  host: idm02.gnome.org
-  ip: idm02.gnome.org
+  host: idm.gnome.org
+  ip: idm.gnome.org
   port: 443
   path: /ipa/ui/
   http_status_code: 200
