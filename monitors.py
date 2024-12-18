@@ -246,12 +246,12 @@ def parse_yaml_and_manage_monitors(yaml_file):
     existing_monitors = get_existing_monitors()
 
     for mon in monitors:
-        if mon["name"] in existing_monitors.keys():
-            if mon["check_type"] == 5:
-                mon_type = 'http'
-            elif mon["check_type"] == 15:
-                mon_type = 'smtp'
+        if mon["check_type"] == 5:
+            mon_type = 'http'
+        elif mon["check_type"] == 15:
+            mon_type = 'smtp'
 
+        if mon["name"] in existing_monitors.keys():
             if mon_requires_update(existing_monitors[mon["name"]], mon):
                 update_monitor(existing_monitors[mon["name"]]["id"], mon_type, mon)
 
