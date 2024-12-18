@@ -54,7 +54,7 @@ def build_payload(monitor, monitor_type, monitor_id=None):
 
         payload.update(additional_payload)
 
-        if payload["path"]:
+        if payload["path"] and payload["path"].startswith('/'):
             payload["path"] = payload["path"].replace("/", "", 1)
 
     if monitor_type == 'smtp':
