@@ -204,14 +204,6 @@
   http_status_code: 200
   check_period: 60
 
-- name: surveys.gnome.org
-  check_type: 5
-  host: surveys.gnome.org
-  ip: surveys.gnome.org
-  port: 443
-  http_status_code: 200
-  check_period: 60
-
 - name: meet.gnome.org
   check_type: 5
   host: meet.gnome.org
