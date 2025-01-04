@@ -251,3 +251,36 @@
   http_status_code: 200
   check_period: 60
   path: "/gimp/v3.0/gimp-3.0.0-RC1.tar.xz?mirrorlist"
+
+- name: webstats.gnome.org
+  check_type: 5
+  host: webstats.gnome.org
+  ip: webstats.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: discourse.flathub.org
+  check_type: 5
+  host: discourse.flathub.org
+  ip: discourse.flathub.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: Flathub website
+  check_type: 5
+  host: flathub.org
+  ip: flathub.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+
+- name: Flathub API
+  check_type: 5
+  host: flathub.org
+  ip: flathub.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
+  path: /api/v2/status
