@@ -284,3 +284,11 @@
   http_status_code: 200
   check_period: 60
   path: /api/v2/status
+
+- name: donate.gnome.org
+  check_type: 5
+  host: donate.gnome.org
+  ip: donate.gnome.org
+  port: 443
+  http_status_code: 200
+  check_period: 60
