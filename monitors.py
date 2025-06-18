@@ -47,10 +47,12 @@ def build_payload(monitor, monitor_type, monitor_id=None):
             "custom_header": monitor.get("custom_header", ""),
             "custom_header_value": monitor.get("custom_header_value", ""),
             "http_status_code": monitor.get("http_status_code", ""),
-            "content": monitor.get("content", ""),
             "path": monitor.get("path", ""),
             "timeout": monitor.get("timeout", 5),
         }
+
+        if monitor.get("content"):
+            additional_payload["content"] = monitor.get("content")
 
         payload.update(additional_payload)
 
