@@ -1,6 +1,6 @@
 ---
 - name: idm.gnome.org
-  check_type: 5
+  check_type: 18
   host: idm.gnome.org
   ip: idm.gnome.org
   port: 443
@@ -9,7 +9,7 @@
   check_period: 60
 
 - name: pad.gnome.org
-  check_type: 5
+  check_type: 18
   host: pad.gnome.org
   ip: pad.gnome.org
   port: 443
@@ -17,7 +17,7 @@
   check_period: 60
 
 - name: bugzilla.gnome.org
-  check_type: 5
+  check_type: 18
   host: bugzilla.gnome.org
   ip: bugzilla.gnome.org
   port: 443
@@ -25,7 +25,7 @@
   check_period: 60
 
 - name: blogs.gnome.org
-  check_type: 5
+  check_type: 18
   host: blogs.gnome.org
   ip: blogs.gnome.org
   port: 443
@@ -33,7 +33,7 @@
   check_period: 60
 
 - name: blog.gtk.org
-  check_type: 5
+  check_type: 18
   host: blog.gtk.org
   ip: blog.gtk.org
   port: 443
@@ -41,7 +41,7 @@
   check_period: 60
 
 - name: cloud.gnome.org
-  check_type: 5
+  check_type: 18
   host: cloud.gnome.org
   ip: cloud.gnome.org
   port: 443
@@ -50,7 +50,7 @@
   check_period: 60
 
 - name: odrs.gnome.org
-  check_type: 5
+  check_type: 18
   host: odrs.gnome.org
   ip: odrs.gnome.org
   port: 443
@@ -58,7 +58,7 @@
   check_period: 60
 
 - name: gitlab.gnome.org
-  check_type: 5
+  check_type: 18
   host: gitlab.gnome.org
   ip: gitlab.gnome.org
   port: 443
@@ -67,7 +67,7 @@
   check_period: 60
 
 - name: developer.gnome.org
-  check_type: 5
+  check_type: 18
   host: developer.gnome.org
   ip: developer.gnome.org
   port: 443
@@ -75,7 +75,7 @@
   check_period: 60
 
 - name: glade.gnome.org
-  check_type: 5
+  check_type: 18
   host: glade.gnome.org
   ip: glade.gnome.org
   port: 443
@@ -83,7 +83,7 @@
   check_period: 60
 
 - name: help.gnome.org
-  check_type: 5
+  check_type: 18
   host: help.gnome.org
   ip: help.gnome.org
   port: 443
@@ -91,7 +91,7 @@
   check_period: 60
 
 - name: planet.gnome.org
-  check_type: 5
+  check_type: 18
   host: planet.gnome.org
   ip: planet.gnome.org
   port: 443
@@ -99,7 +99,7 @@
   check_period: 60
 
 - name: download.gnome.org
-  check_type: 5
+  check_type: 18
   host: download.gnome.org
   ip: download.gnome.org
   port: 443
@@ -107,7 +107,7 @@
   check_period: 60
 
 - name: paste.gnome.org
-  check_type: 5
+  check_type: 18
   host: paste.gnome.org
   ip: paste.gnome.org
   port: 443
@@ -116,7 +116,7 @@
   check_period: 60
 
 - name: mail.gnome.org
-  check_type: 5
+  check_type: 18
   host: mail.gnome.org
   ip: mail.gnome.org
   port: 443
@@ -124,7 +124,7 @@
   check_period: 60
 
 - name: l10n.gnome.org
-  check_type: 5
+  check_type: 18
   host: l10n.gnome.org
   ip: l10n.gnome.org
   port: 443
@@ -132,7 +132,7 @@
   check_period: 60
 
 - name: extensions.gnome.org
-  check_type: 5
+  check_type: 18
   host: extensions.gnome.org
   ip: extensions.gnome.org
   port: 443
@@ -140,7 +140,7 @@
   check_period: 60
 
 - name: wiki.gnome.org
-  check_type: 5
+  check_type: 18
   host: wiki.gnome.org
   ip: wiki.gnome.org
   port: 443
@@ -148,7 +148,7 @@
   check_period: 60
 
 - name: nmcheck.gnome.org
-  check_type: 5
+  check_type: 18
   host: nmcheck.gnome.org
   ip: nmcheck.gnome.org
   port: 443
@@ -157,7 +157,7 @@
   check_period: 60
 
 - name: www.gnome.org
-  check_type: 5
+  check_type: 18
   host: www.gnome.org
   ip: www.gnome.org
   port: 443
@@ -165,7 +165,7 @@
   check_period: 60
 
 - name: discourse.gnome.org
-  check_type: 5
+  check_type: 18
   host: discourse.gnome.org
   ip: discourse.gnome.org
   port: 443
@@ -173,7 +173,7 @@
   check_period: 60
 
 - name: events.gnome.org
-  check_type: 5
+  check_type: 18
   host: events.gnome.org
   ip: events.gnome.org
   port: 443
@@ -181,7 +181,7 @@
   check_period: 60
 
 - name: gtk.org
-  check_type: 5
+  check_type: 18
   host: gtk.org
   ip: gtk.org
   port: 443
@@ -189,7 +189,7 @@
   check_period: 60
 
 - name: www.gimp.org
-  check_type: 5
+  check_type: 18
   host: www.gimp.org
   ip: www.gimp.org
   port: 443
@@ -197,7 +197,7 @@
   check_period: 60
 
 - name: docs.gimp.org
-  check_type: 5
+  check_type: 18
   host: docs.gimp.org
   ip: docs.gimp.org
   port: 443
@@ -205,7 +205,7 @@
   check_period: 60
 
 - name: meet.gnome.org
-  check_type: 5
+  check_type: 18
   host: meet.gnome.org
   ip: meet.gnome.org
   port: 443
@@ -213,7 +213,7 @@
   check_period: 60
 
 - name: nightly.gnome.org
-  check_type: 5
+  check_type: 18
   host: nightly.gnome.org
   ip: nightly.gnome.org
   port: 443
@@ -222,7 +222,7 @@
   check_period: 60
 
 - name: openqa.gnome.org
-  check_type: 5
+  check_type: 18
   host: openqa.gnome.org
   ip: openqa.gnome.org
   port: 443
@@ -233,18 +233,18 @@
   check_type: 15
   host: smtp.gnome.org
   ip: smtp.gnome.org
-  port: 25
+  port: 218
   check_period: 60
 
 - name: smtp.gnome.org-submission
   check_type: 15
   host: smtp.gnome.org
   ip: smtp.gnome.org
-  port: 587
+  port: 1887
   check_period: 60
 
 - name: download.gimp.org
-  check_type: 5
+  check_type: 18
   host: download.gimp.org
   ip: download.gimp.org
   port: 443
@@ -253,7 +253,7 @@
   path: "/gimp/v3.0/gimp-3.0.0-RC1.tar.xz?mirrorlist"
 
 - name: webstats.gnome.org
-  check_type: 5
+  check_type: 18
   host: webstats.gnome.org
   ip: webstats.gnome.org
   port: 443
@@ -261,7 +261,7 @@
   check_period: 60
 
 - name: discourse.flathub.org
-  check_type: 5
+  check_type: 18
   host: discourse.flathub.org
   ip: discourse.flathub.org
   port: 443
@@ -269,7 +269,7 @@
   check_period: 60
 
 - name: Flathub website
-  check_type: 5
+  check_type: 18
   host: flathub.org
   ip: flathub.org
   port: 443
@@ -277,7 +277,7 @@
   check_period: 60
 
 - name: Flathub API
-  check_type: 5
+  check_type: 18
   host: flathub.org
   ip: flathub.org
   port: 443
@@ -286,7 +286,7 @@
   path: /api/v2/status
 
 - name: donate.gnome.org
-  check_type: 5
+  check_type: 18
   host: donate.gnome.org
   ip: donate.gnome.org
   port: 443
