@@ -275,6 +275,7 @@
   port: 443
   http_status_code: 200
   check_period: 60
+  path: "/en"
 
 - name: Flathub API
   check_type: 18
