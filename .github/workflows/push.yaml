@@ -22,3 +22,4 @@ jobs:
           CLOUDNS_AUTH_ID: ${{ secrets.CLOUDNS_AUTH_ID }}
           CLOUDNS_AUTH_PASSWORD: ${{ secrets.CLOUDNS_AUTH_PASSWORD }}
           PAGERDUTY_EMAIL: ${{ secrets.PAGERDUTY_EMAIL }}
+          FLATHUB_PAGERDUTY_EMAIL: ${{ secrets.FLATHUB_PAGERDUTY_EMAIL }}
