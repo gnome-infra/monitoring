@@ -24,6 +24,48 @@ AUTH_PASSWORD = os.environ.get("CLOUDNS_AUTH_PASSWORD")
 PAGERDUTY_EMAIL = os.environ.get("PAGERDUTY_EMAIL")
 
 
+def normalize_notifications(notifications):
+    """
+    Normalize notifications to always be a list.
+    Handles both list format and single object format from YAML.
+    """
+    if notifications is None:
+        return []
+
+    # If it's already a list, return it
+    if isinstance(notifications, list):
+        return notifications
+
+    # If it's a dict (single notification object), wrap it in a list
+    if isinstance(notifications, dict):
+        return [notifications]
+
+    # Otherwise return empty list
+    return []
+
+
+def get_notification_value(notification):
+    """
+    Get the notification value, expanding environment variable if is_env_var is true.
+    If is_env_var is true, treat value as an environment variable name and expand it.
+    If is_env_var is false or not set, use the value literally.
+    """
+    if not isinstance(notification, dict):
+        return notification
+
+    value = notification.get("value")
+    if not value:
+        return value
+
+    is_env_var = notification.get("is_env_var", False)
+    if is_env_var:
+        # Treat value as environment variable name
+        return os.environ.get(value, value)  # Return original if not found
+
+    # Use value literally
+    return value
+
+
 def build_payload(monitor, monitor_type, monitor_id=None):
     payload = {
         "auth-id": AUTH_ID,
@@ -196,9 +238,16 @@ def mon_requires_update(fetched_monitor, local_monitor):
 
 
 def mon_notification_requires_update(fetched_notifications, local_notifications):
+    # Ensure local_notifications is a list
+    local_notifications = normalize_notifications(local_notifications)
+
     for notification in local_notifications:
+        # Skip if notification is not a dict
+        if not isinstance(notification, dict):
+            continue
+
         local_type = notification.get("type")
-        local_value = notification.get("value")
+        local_value = get_notification_value(notification)
 
         if local_type is None or local_value is None:
             continue
@@ -261,43 +310,44 @@ def parse_yaml_and_manage_monitors(yaml_file):
                 existing_monitors[mon["name"]]["id"]
             )
             if len(existing_notification) == 0:
-                for notification in mon.get(
-                    "notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}]
-                ):
+                notifications = normalize_notifications(
+                    mon.get("notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}])
+                )
+                for notification in notifications:
                     create_notification(
                         existing_monitors[mon["name"]]["id"],
                         mon["name"],
                         notification["type"],
-                        notification["value"],
+                        get_notification_value(notification),
                     )
             else:
+                notifications = normalize_notifications(
+                    mon.get("notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}])
+                )
                 if mon_notification_requires_update(
                     existing_notification,
-                    mon.get(
-                        "notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}]
-                    ),
+                    notifications,
                 ):
                     for _notification in existing_notification:
                         delete_notification(
                             existing_monitors[mon["name"]]["id"],
                             _notification["notification_id"],
                         )
-                    for notification in mon.get(
-                        "notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}]
-                    ):
+                    for notification in notifications:
                         create_notification(
                             existing_monitors[mon["name"]]["id"],
                             mon["name"],
                             notification["type"],
-                            notification["value"],
+                            get_notification_value(notification),
                         )
         else:
             id = create_monitor(mon, mon_type)
-            for notification in mon.get(
-                "notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}]
-            ):
+            notifications = normalize_notifications(
+                mon.get("notifications", [{"type": "mail", "value": PAGERDUTY_EMAIL}])
+            )
+            for notification in notifications:
                 create_notification(
-                    id, mon["name"], notification["type"], notification["value"]
+                    id, mon["name"], notification["type"], get_notification_value(notification)
                 )
 
     for name, monitor in existing_monitors.items():

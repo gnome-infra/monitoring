@@ -267,6 +267,10 @@
   port: 443
   http_status_code: 200
   check_period: 60
+  notifications:
+    type: mail
+    value: FLATHUB_PAGERDUTY_EMAIL
+    is_env_var: true
 
 - name: Flathub website
   check_type: 18
@@ -276,6 +280,10 @@
   http_status_code: 200
   check_period: 60
   path: "/en"
+  notifications:
+    type: mail
+    value: FLATHUB_PAGERDUTY_EMAIL
+    is_env_var: true
 
 - name: Flathub API
   check_type: 18
@@ -285,6 +293,10 @@
   http_status_code: 200
   check_period: 60
   path: /api/v2/status
+  notifications:
+    type: mail
+    value: FLATHUB_PAGERDUTY_EMAIL
+    is_env_var: true
 
 - name: donate.gnome.org
   check_type: 18
