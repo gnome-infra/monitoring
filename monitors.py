@@ -59,8 +59,7 @@ def get_notification_value(notification):
 
     is_env_var = notification.get("is_env_var", False)
     if is_env_var:
-        # Treat value as environment variable name
-        return os.environ.get(value, value)  # Return original if not found
+        return os.environ.get(value, None)
 
     # Use value literally
     return value
@@ -129,10 +128,20 @@ def get_existing_monitors():
         )
         if response.status_code == 200:
             data = response.json()
-            for _, value in data.items():
-                monitors[value["name"]] = value
 
-            if response._content == b"{}":
+            # Handle different response structures
+            if isinstance(data, dict):
+                for _, value in data.items():
+                    # Only process if value is a dictionary (monitor object)
+                    if isinstance(value, dict) and "name" in value:
+                        monitors[value["name"]] = value
+            elif isinstance(data, list):
+                # If API returns a list directly
+                for monitor in data:
+                    if isinstance(monitor, dict) and "name" in monitor:
+                        monitors[monitor["name"]] = monitor
+
+            if response._content == b"{}" or not data:
                 break
             else:
                 page += 1
