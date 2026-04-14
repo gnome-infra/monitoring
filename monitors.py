@@ -306,10 +306,13 @@ def parse_yaml_and_manage_monitors(yaml_file):
     existing_monitors = get_existing_monitors()
 
     for mon in monitors:
-        if mon["check_type"] == 5:
+        if mon["check_type"] in (5, 18):
             mon_type = 'http'
         elif mon["check_type"] == 15:
             mon_type = 'smtp'
+        else:
+            print(f"Warning: Unknown check_type {mon['check_type']} for monitor '{mon['name']}', skipping.")
+            continue
 
         if mon["name"] in existing_monitors.keys():
             if mon_requires_update(existing_monitors[mon["name"]], mon):
